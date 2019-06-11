@@ -19,10 +19,10 @@ workflows:
 
   my-workflow: 
     jobs:
-      - entur-docs/publish-docs:
-          context: global
-          project-name: customers
-          docs-path: docs
+    - entur-docs/publish-docs:
+        context: global
+        project-name: customers
+        docs-path: docs
 ```
          
 Available commands and jobs can be found in `src`. Usage examples in `examples`             

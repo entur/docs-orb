@@ -31,9 +31,9 @@ steps:
         CREDENTIALS="<< parameters.gcp-service-key >>"
         if [[ -n "${CREDENTIALS}" ]]; then
           echo "Using credentials provided in parameters."
-        elif [[ -n "${$DOCS_PASSWORD}" ]]; then
+        elif [[ -n "${DOCS_PASSWORD}" ]]; then
           echo "Using credentials from environment."
-          CREDENTIALS="${$DOCS_PASSWORD}"
+          CREDENTIALS="${DOCS_PASSWORD}"
         else
           echo "No credentials were found. Looked in parameters and environment."
           exit 1
