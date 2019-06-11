@@ -4,3 +4,8 @@ description: |
   An orb for pushing files to Entur Docs - Google Cloud Storage.
   Made for Entur AS.
   Project homepage: https://github.com/entur/docs-orb
+
+executors:
+  entur-cci-toolbox:
+    docker:
+      - image: entur/cci-toolbox:2.1 # Entur CCI-toolbox has gcloud & rsync pre-installed.

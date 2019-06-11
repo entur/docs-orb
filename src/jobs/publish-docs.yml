@@ -1,5 +1,4 @@
-description: |
-  Uses rsync to push a selected folder to Entur Docs -  Google Cloud Storage.
+executor: entur-cci-toolbox
 
 parameters:
   gcp-service-key:
@@ -22,31 +21,33 @@ parameters:
       Default is 'docs'
     type: string
     default: "docs"
+  attach-workspace:
+    default: false
+    description: |
+      Boolean for whether or not to attach to an existing workspace. Default is false.
+    type: boolean
+  checkout:
+    default: true
+    description: |
+      Boolean for whether or not to checkout as a first step. Default is true.
+    type: boolean
+  workspace-root:
+    default: workspace
+    description: |
+      Workspace root path that is either an absolute path or a path relative to the working directory. Defaults to '.' (the working directory)
+    type: string
 
 steps:
-  - authenticate-gcp:
+  - when:
+      condition: << parameters.checkout >>
+      steps:
+        - checkout
+  - when:
+      condition: << parameters.attach-workspace >>
+      steps:
+        - attach_workspace:
+            at: << parameters.workspace-root >>
+  - push-to-docs-gcs:
       gcp-service-key: << parameters.gcp-service-key >>
-  - run:
-      name: Upload docs to Entur Docs GCS
-      command: |
-        PROJECT_NAME="<< parameters.project-name >>"
-        DOCS_FOLDER="<< parameters.docs-path >>"
-
-        if [ -z "${PROJECT_NAME}" ]; then
-          echo "Project name must be specified."
-          exit 1
-        fi
-
-        if ! which rsync > /dev/null; then
-          echo "rsync is not installed. Please run this command with a executor that supports rsync."
-          exit 1
-        fi
-
-        echo "Preparing working directory..."
-        rsync -R ${DOCS_FOLDER}/** temp-docs -v
-
-        echo "Starting to sync files to GCS Bucket..."
-        gsutil -m rsync -d -r temp-docs gs://entur-docs.appspot.com/${PROJECT_NAME}
-
-        echo "Removing working directory..."
-        rm -rfv temp-docs
+      project-name: << parameters.project-name >>
+      docs-path: << parameters.docs-path >>
