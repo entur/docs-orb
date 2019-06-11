@@ -11,8 +11,21 @@ orbs:
  docs: entur/docs@volatile 
  # volatile selects the newest version. More examples of versioning here: https://circleci.com/docs/2.0/creating-orbs/#semantic-versioning-in-orbs
 ```
+
+Use the orb in your workflow like this:
+```yaml
+workflows:
+  version: 2.1
+
+  my-workflow: 
+    jobs:
+      - entur-docs/publish-docks:
+          context: global
+          project-name: customers
+          docs-path: docs
+```
          
-Available commands can be found in `src/commands`. Usage examples in `examples`             
+Available commands and jobs can be found in `src`. Usage examples in `examples`             
 
 ## Pack and publish orb
 
