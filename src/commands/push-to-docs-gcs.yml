@@ -1,0 +1,35 @@
+description: |
+  Uses rsync to push a selected folder to Entur Docs -  Google Cloud Storage.
+
+parameters:
+  gcp-service-key:
+    description: |
+      The credentials for the Service Account to be used when communicating to Google Cloud.
+      If not provided, the command will look for the environment variable $GCLOUD_SERVICE_KEY
+
+      To obtain the key for this command,
+      use either the Google Cloud Platform Console or gcloud iam service-accounts keys create.
+      The key can be .json (preferred) or .p12 (legacy) format.
+    type: string
+    default: ""
+
+steps:
+  - authenticate-gcp:
+        gcp-service-key: << parameters.gcp-service-key >>
+  - run:
+      name: Upload docs to Entur Docs GCS
+      command: |
+
+        if ! which rsync > /dev/null; then
+          echo "rsync is not installed. Please run this command with a executor that supports rsync."
+          exit 1
+        fi
+
+        echo "Preparing working directory..."
+        rsync -R docs/** temp-docs -v
+
+        echo "Starting to sync files to GCS Bucket..."
+        gsutil -m rsync -d -r temp-docs gs://entur-docs.appspot.com/customers
+
+        echo "Removing working directory..."
+        rm -rfv temp-docs
