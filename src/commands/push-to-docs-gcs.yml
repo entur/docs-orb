@@ -15,7 +15,7 @@ parameters:
 
 steps:
   - authenticate-gcp:
-        gcp-service-key: << parameters.gcp-service-key >>
+      gcp-service-key: << parameters.gcp-service-key >>
   - run:
       name: Upload docs to Entur Docs GCS
       command: |
