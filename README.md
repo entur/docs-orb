@@ -19,7 +19,7 @@ workflows:
 
   my-workflow: 
     jobs:
-      - entur-docs/publish-docks:
+      - entur-docs/publish-docs:
           context: global
           project-name: customers
           docs-path: docs

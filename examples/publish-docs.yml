@@ -12,7 +12,7 @@ workflows:
 
   my-workflow: # probably release or master
     jobs:
-      - entur-docs/publish-docks:
+      - entur-docs/publish-docs:
           name: publish-docs
           context: global # a context that contains a gcp-service key with the name DOCS_PASSWORD.
           project-name: customers

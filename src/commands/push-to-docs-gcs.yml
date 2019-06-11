@@ -1,5 +1,5 @@
 description: |
-  Uses rsync to push a selected folder to Entur Docs -  Google Cloud Storage.
+  Uses rsync to push a selected folder to Entur Docs - Google Cloud Storage.
 
 parameters:
   gcp-service-key:
