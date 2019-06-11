@@ -4,7 +4,7 @@ parameters:
   gcp-service-key:
     description: |
       The credentials for the Service Account to be used when communicating to Google Cloud.
-      If not provided, the command will look for the environment variable $GCLOUD_SERVICE_KEY
+      If not provided, the command will look for the environment variable $DOCS_PASSWORD
 
       To obtain the key for this command,
       use either the Google Cloud Platform Console or gcloud iam service-accounts keys create.

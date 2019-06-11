@@ -1,0 +1,25 @@
+description:
+  Demonstrate how to use this orb to push docs to Entur Docs GCS
+
+usage:
+  version: 2.1
+
+orbs:
+  entur-docs: entur/docs@volatile # Use volatile if you always want the newest version.
+
+workflows:
+  version: 2.1
+
+  my-workflow: # probably release or master
+  jobs:
+    - entur-docs/publish-docks:
+        name: publish-docs
+        context: global # a context that contains a gcp-service key with the name DOCS_PASSWORD.
+        project-name: customers
+        docs-path: docs
+
+        # Optional parameters
+        checkout: false # checkout the code from git | default = true
+
+        attach-workspace: true # if the docs is saved in the workspace, it can be obtained like this. | default = false
+        workspace-root: .
