@@ -13,7 +13,7 @@ parameters:
     default: ""
   project-name:
     description: |
-      Specify the project name (e.g. mobility, customers). This is the same as the bucket name in GCS.
+      Specify the project name (e.g. mobility, customers). This will be the name of this project's directory in the documentation GCS bucket.
     type: string
   docs-path:
     description: |
