@@ -21,6 +21,12 @@ parameters:
       Default is 'docs'
     type: string
     default: "docs"
+  replace-all:
+    description: |
+      Whether to replace all files in this project's directory in the documentation GCS bucket.
+      If set to false, only new or changed files are updated.
+    type: boolean
+    default: true
   attach-workspace:
     default: false
     description: |
@@ -51,3 +57,4 @@ steps:
       gcp-service-key: << parameters.gcp-service-key >>
       project-name: << parameters.project-name >>
       docs-path: << parameters.docs-path >>
+      replace-all: << parameters.replace-all >>

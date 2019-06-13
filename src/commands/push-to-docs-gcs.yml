@@ -22,6 +22,12 @@ parameters:
       Default is 'docs'
     type: string
     default: "docs"
+  replace-all:
+    description: |
+      Whether to replace all files in this project's directory in the documentation GCS bucket.
+      If set to false, only new or changed files are updated.
+    type: boolean
+    default: true
 
 steps:
   - authenticate-gcp:
@@ -42,11 +48,19 @@ steps:
           exit 1
         fi
 
+        RSYNC_MODE=""
+        if [ << parameters.replace-all  >>]; then
+          echo "rsync mode is set to replace."
+          RSYNC_MODE="-dr"
+        else
+          echo "rsync mode is set to update"
+        fi
+
         echo "Preparing working directory..."
         rsync -R ${DOCS_FOLDER}/** temp-docs -v
 
         echo "Starting to sync files to GCS Bucket..."
-        gsutil -m rsync -d -r temp-docs gs://entur-docs.appspot.com/${PROJECT_NAME}
+        gsutil -m rsync ${RSYNC_MODE} temp-docs/* gs://entur-docs.appspot.com/${PROJECT_NAME}/${DOCS_FOLDER}
 
         echo "Removing working directory..."
         rm -rfv temp-docs
