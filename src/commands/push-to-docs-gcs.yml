@@ -48,7 +48,7 @@ steps:
           exit 1
         fi
 
-        RSYNC_MODE=""
+        RSYNC_MODE="-r"
         if [ << parameters.replace-all  >>]; then
           echo "rsync mode is set to replace."
           RSYNC_MODE="-dr"
@@ -57,7 +57,7 @@ steps:
         fi
 
         echo "Preparing working directory..."
-        rsync -R ${DOCS_FOLDER}/** temp-docs -v
+        rsync -R -r ${DOCS_FOLDER}/** temp-docs -v
 
         echo "Starting to sync files to GCS Bucket..."
         gsutil -m rsync ${RSYNC_MODE} temp-docs/* gs://entur-docs.appspot.com/${PROJECT_NAME}/${DOCS_FOLDER}
