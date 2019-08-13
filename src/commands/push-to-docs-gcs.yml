@@ -38,7 +38,7 @@ steps:
         PROJECT_NAME="<< parameters.project-name >>"
         DOCS_FOLDER="<< parameters.docs-path >>"
 
-        if [ -z "${PROJECT_NAME}" ]; then
+        if [[ -z "${PROJECT_NAME}" ]]; then
           echo "Project name must be specified."
           exit 1
         fi
@@ -49,7 +49,7 @@ steps:
         fi
 
         RSYNC_MODE="-r"
-        if [ << parameters.replace-all  >>]; then
+        if [[ << parameters.replace-all  >> ]]; then
           echo "rsync mode is set to replace."
           RSYNC_MODE="-dr"
         else
