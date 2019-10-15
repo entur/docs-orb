@@ -30,7 +30,7 @@ parameters:
     default: true
 
 steps:
-  - authenticate-gcp:
+  - gcp-auth/authenticate-gcp:
       gcp-service-key: << parameters.gcp-service-key >>
   - run:
       name: Upload docs to Entur Docs GCS

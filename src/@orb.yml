@@ -9,3 +9,6 @@ executors:
   entur-cci-toolbox:
     docker:
       - image: entur/cci-toolbox:2.1 # Entur CCI-toolbox has gcloud & rsync pre-installed.
+
+orbs:
+  gcp-auth: entur/gcp-auth@volatile
