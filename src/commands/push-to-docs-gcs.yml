@@ -31,13 +31,6 @@ parameters:
     default: true
 
 steps:
-  - run:
-      name: Transfer $DOCS_PASSWORD to GCLOUD_SERVICE_KEY
-      command: |
-        if [[ -n "$DOCS_PASSWORD" ]]; then
-          echo 'export GCLOUD_SERVICE_KEY="$DOCS_PASSWORD"' >> $BASH_ENV
-          echo 'export GCLOUD_SERVICE_KEY as DOCS_PASSWORD'
-        fi
   - gcp-auth/authenticate-gcp:
       gcp-service-key: << parameters.gcp-service-key >>
   - run:
