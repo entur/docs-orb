@@ -1,4 +1,4 @@
-# Entur - CircleCI Docs Orb
+# Entur - CircleCI Docs Orb [![CircleCI](https://circleci.com/gh/entur/docs-orb/tree/master.svg?style=svg)](https://circleci.com/gh/entur/docs-orb/tree/master)
 This orb simplify pushing files to Google Cloud Storage. 
 
 https://circleci.com/orbs/registry/orb/entur/docs
