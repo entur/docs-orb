@@ -14,6 +14,7 @@ workflows:
       - entur-docs/publish-docs:
           name: publish-docs
           context: global # a context that contains a gcp-service key with the name DOCS_PASSWORD.
+          # Add $DOCKERHUB_LOGIN and $DOCKERHUB_PASSWORD credentials in your context to log in to Docker hub
           project-name: customers
           docs-path: docs
 

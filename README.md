@@ -27,6 +27,7 @@ workflows:
          
 Available commands and jobs can be found in `src`. Usage examples in `examples`             
 
+Add $DOCKERHUB_LOGIN and $DOCKERHUB_PASSWORD credentials in your context to log in to Docker hub
 ## Pack and publish orb
 
 Make sure you have the CircleCI CLI:
