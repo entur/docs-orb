@@ -8,7 +8,7 @@ https://circleci.com/orbs/registry/orb/entur/docs
 Import the orb and give it a name. Add this to the `orbs`-key in your CircleCI-configuration:
 ```yaml
 orbs:
- docs: entur/docs@volatile 
+ entur-docs: entur/docs@volatile 
  # volatile selects the newest version. More examples of versioning here: https://circleci.com/docs/2.0/creating-orbs/#semantic-versioning-in-orbs
 ```
 
