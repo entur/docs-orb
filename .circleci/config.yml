@@ -13,7 +13,7 @@ workflows:
           source-dir: src
       - orb-tools/publish:
           name: publish
-          context: orb-publishing
+          context: global
           filters:
             branches:
               ignore: master
@@ -24,7 +24,7 @@ workflows:
             - pack
       - orb-tools/increment:
           name: release
-          context: orb-publishing
+          context: global
           filters:
             branches:
               only: master
