@@ -40,6 +40,10 @@ steps:
         fi
   - gcp-auth/authenticate-gcp:
       gcp-service-key: << parameters.gcp-service-key >>
+   - run:
+      name: install rsync
+      command: |
+        apk add rsync
   - run:
       name: Upload docs to Entur Docs GCS
       command: |
