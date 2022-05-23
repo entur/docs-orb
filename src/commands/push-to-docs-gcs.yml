@@ -40,7 +40,7 @@ steps:
         fi
   - gcp-auth/authenticate-gcp:
       gcp-service-key: << parameters.gcp-service-key >>
-   - run:
+  - run:
       name: install rsync
       command: |
         apk add rsync
